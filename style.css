@@ -1,0 +1,6 @@
+body {
+    font-family: sans-serif;
+}
+input { display: none; }
+.puppet { … }
+#i1:checked ~ .puppet 
