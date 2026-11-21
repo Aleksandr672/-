@@ -1,0 +1,159 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игрушка «Папус»</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #e8f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        h1 { color: #1a5c2a; margin-bottom: 10px; }
+        .sub { color: #555; margin-bottom: 30px; }
+
+        .puppet {
+            width: 220px; height: 280px;
+            background: #4CAF50; border-radius: 12px;
+            display: flex; flex-direction: column; align-items: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .puppet.screw {
+            width: 60px; height: 100px;
+            background: #2E8B57; border-radius: 8px 8px 4px 4px;
+            transform: scale(0.8);
+        }
+        .puppet.screw::before {
+            content: ''; position: absolute; top: -14px; left: 18px;
+            width: 96px; height: 12px; background: #2E8B57;
+            border-radius: 4px;
+        }
+
+        /* Голова */
+        .head {
+            width: 100%; height: 90px; background: #5CB85C;
+            border-radius: 50% 50% 30% 30%; position: relative;
+        }
+        /* Борода */
+        .beard {
+            position: absolute; bottom: 0; left: 25%; width: 50%; height: 35px;
+            background: #333; border-radius: 8px 8px 0 0;
+        }
+        /* Очки */
+        .glasses {
+            position: absolute; top: 35px; left: 38px; width: 44px; height: 18px;
+            background: #222; border-radius: 4px;
+        }
+        .glasses::after {
+            content: ''; position: absolute; left: 22px; top: 6px; width: 8px; height: 18px;
+            background: #222; border-radius: 4px;
+        }
+        /* Волосы */
+        .hair {
+            position: absolute; top: 10px; left: 25px; width: 50%; height: 25px;
+            background: #33691E; border-radius: 12px 12px 0 0;
+        }
+
+        /* Тело */
+        .body { width: 100%; height: 110px; background: #4CAF50; }
+        .logo {
+            position: absolute; top: 45px; left: 40%; transform: translateX(-50%);
+            width: 40px; height: 40px; background: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 14px; color: #1a5c2a;
+        }
+
+        /* Руки (три пальца = «Тыдыщ») */
+        .arm {
+            position: absolute;
+            width: 18px; height: 60px; background: #5CB85C;
+            border-radius: 9px;
+            top: 130px;
+        }
+        .arm.left { left: 20%; }
+        .arm.right { right: 20%; }
+        .finger {
+            width: 12px; height: 20px; background: #5CB85C;
+            border-radius: 6px; position: absolute;
+        }
+        .arm.right .finger { top: 0; left: 6px; }
+        .arm.right .finger:nth-child(2) { top: 24px; }
+        .arm.right .finger:nth-child(3) { top: 48px; }
+
+        .status {
+            margin-top: 20px; padding: 12px 20px; border-radius: 10px;
+            background: #fff; border: 1px solid #c8e6c9; color: #1b5e20; font-size: 18px;
+        }
+
+        button {
+            padding: 14px 28px; font-size: 16px; border: none;
+            border-radius: 8px; background: #2E7D32; color: #fff;
+            cursor: pointer; margin-top: 10px;
+        }
+        button:hover { background: #2E8B4A; }
+    </style>
+</head>
+<body>
+
+    <h1>🧸 Папус</h1>
+    <p class="sub">Фиксик экстра-класса. Папа Симки и Нолика.</p>
+
+    <div class="puppet" id="puppet">
+        <div class="hair"></div>
+        <div class="head">
+            <div class="glasses"></div>
+            <div class="beard"></div>
+        </div>
+        <div class="body">
+            <div class="logo">🔧</div>
+        </div>
+        <div class="arm left">
+            <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        </div>
+        <div class="arm right">
+            <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        </div>
+    </div>
+
+    <div id="status">Готов к работе.</div>
+
+    <button id="btn1">Сказать «Тыдыщ!»</button>
+    <button id="btn2">Маскировка («винтик»)</button>
+    <button id="btn3">Вернуться</button>
+
+    <script>
+        const puppet = document.getElementById('puppet');
+        const status = document.getElementById('status');
+
+        document.getElementById('btn1').addEventListener('click', () => {
+            status.textContent = '«ТЫДЫЩ!» Работа выполнена.';
+            status.style.background = '#e8f5e9';
+            status.style.color = '#1b5e20';
+        });
+
+        document.getElementById('btn2').addEventListener('click', () => {
+            puppet.classList.add('screw');
+            status.textContent = 'Маскировка: я теперь остроконечный болт. Не трогать.';
+            status.style.background = '#f3e5f5';
+            status.style.color = '#4a148c';
+        });
+
+        document.getElementById('btn3').addEventListener('click', () => {
+            puppet.classList.remove('screw');
+            status.textContent = 'Готов к работе.';
+            status.style.background = '#fff';
+            status.style.color = '#1b5e20';
+        });
+    </script>
+
+</body>
+</html>
